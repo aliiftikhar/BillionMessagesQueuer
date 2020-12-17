@@ -38,6 +38,9 @@ namespace BillionMessagesQueuer.Core.UseCases.QueueMessages
                 };
 
                 tasks.Add(this.queueService.Queue(message));
+
+                if(i%1000 == 0)
+                    LogMessage($"{i} of {request.NumberOfMessagesToQueue} queued");
             }
 
             LogMessage($"Number of Messages Queued: {tasks.Count}");
